@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load routine_extras %}
 
-</body>
-</html>
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3 text-center">📘 View Class Routine</h2>
+
+    <!-- Select Department & Year -->
+    <form method="get" class="row g-2 mb-3 justify-content-center">
+        <div class="col-auto">
+            <select name="department" class="form-select">
+                <option value="">Select Department</option>
+                {% for code, name in departments %}
+                    <option value="{{ code }}" {% if selected_dept == code %}selected{% endif %}>{{ name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-auto">
+            <select name="year" class="form-select">
+                <option value="">Select Year</option>
+                {% for code, name in years %}
+                    <option value="{{ code }}" {% if selected_year == code %}selected{% endif %}>{{ name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">View Routine</button>
+        </div>
+    </form>
+
+    <!-- Routine Display -->
+    {% if routines %}
+        <div class="row">
+            {% for r in routines %}
+                <div class="col-md-6 mb-3 text-center">
+                    {% if r.routine_file.url|endswith:".pdf" %}
+                        <a href="{{ r.routine_file.url }}" target="_blank" class="btn btn-outline-primary">
+                            View PDF: {{ r.title|default:"Routine" }}
+                        </a>
+                    {% else %}
+                        <img src="{{ r.routine_file.url }}" alt="{{ r.title|default:"Routine" }}" class="img-thumbnail" style="max-width:500px;">
+                        <p>{{ r.title|default:"Routine" }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No routine uploaded for this selection.</p>
+    {% endif %}
+</div>
+{% endblock %}
