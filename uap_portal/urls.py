@@ -16,22 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # include app urls
-    path('students/', include('students.urls')),
-    path('departments/', include('departments.urls')),
-    path('faculty/', include('faculty.urls')),
-    path('routines/', include('routines.urls')),
-    path('marks/', include('marks.urls')),
-    path('feedback/', include('feedback.urls')),
-    # homepage — point to students list for convenience
-    path('', include('students.urls')),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
