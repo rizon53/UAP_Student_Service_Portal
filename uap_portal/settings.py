@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     # 'routine_app',
     # 'marks_app',
     # 'feedback_app',
-    # 'department_app',
+    'department_app',
 ]
 
 MIDDLEWARE = [
