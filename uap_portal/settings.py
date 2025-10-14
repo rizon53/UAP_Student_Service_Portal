@@ -37,13 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'departments',
-    'students',
-    'faculty',
-    'routines',
-    'marks',
-    'feedback',
-    'common',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +57,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # MUST point to top-level templates folder
+        'DIRS': [BASE_DIR / 'templates'],   # ✅ points to top-level templates folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,16 +69,6 @@ TEMPLATES = [
         },
     },
 ]
-
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [ BASE_DIR / 'static' ]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-
-WSGI_APPLICATION = 'uap_portal.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
