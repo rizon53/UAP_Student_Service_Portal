@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Your apps
-    # 'routine_app',
+    'routine_app',
     'marks_app',
     # 'feedback_app',
     'department_app',
