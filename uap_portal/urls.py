@@ -26,7 +26,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='/login/'), name='logout'),
 
     # path('', include('routine_app.urls')),
-    # path('marks/', include('marks_app.urls')),
+    path('marks/', include('marks_app.urls')),
     # path('feedback/', include('feedback_app.urls')),
     path('department/', include('department_app.urls')),
 ]

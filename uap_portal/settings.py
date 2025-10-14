@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Your apps
     # 'routine_app',
-    # 'marks_app',
+    'marks_app',
     # 'feedback_app',
     'department_app',
 ]
