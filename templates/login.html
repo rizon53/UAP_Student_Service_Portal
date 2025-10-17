@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+body {
+    background: radial-gradient(circle at 10% 20%, #000010, #001133 90%);
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.glass-login {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+    padding: 40px 35px;
+    width: 400px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.glass-login:hover {
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+.glass-login h2 {
+    color: #00ffff;
+    text-shadow: 0 0 15px #00ffff;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+form p {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+form label {
+    color: #dcdcdc;
+    font-weight: 500;
+}
+
+form input {
+    background: transparent;
+    border: 1px solid #00ffff88;
+    border-radius: 8px;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+form input:focus {
+    border-color: #00ffff;
+    outline: none;
+    box-shadow: 0 0 10px #00ffff66;
+}
+
+.btn-glow {
+    background: linear-gradient(90deg, #00ffff, #007bff);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+    box-shadow: 0 0 15px #00ffff99;
+    transition: 0.3s;
+}
+.btn-glow:hover {
+    box-shadow: 0 0 40px #00ffff;
+    transform: scale(1.03);
+}
+
+.extra-links {
+    margin-top: 15px;
+}
+.extra-links a {
+    color: #00ffff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.extra-links a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #00ffff;
+}
+</style>
+
+<div class="login-wrapper">
+    <div class="glass-login">
+        <h2>🔐 Login to Portal</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-glow mt-3">Login</button>
+        </form>
+
+        <div class="extra-links mt-3">
+            <p>Don't have an account? <a href="{% url 'student_register' %}">Register here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
