@@ -1,8 +1,9 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
 from .models import Routine
+
+def home(request):
+    return render(request, 'home.html')
+
 
 def routine_list(request):
     routines = None
