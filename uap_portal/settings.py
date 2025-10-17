@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     # 'feedback_app',
     'department_app',
     'student_app',
-    # 'faculty_app',
+    'faculty_app',
 ]
 
 MIDDLEWARE = [
