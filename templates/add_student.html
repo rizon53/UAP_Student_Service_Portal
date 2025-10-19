@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-white">Add New Student</h2>
+
+    <form method="post" class="border p-4 rounded bg-dark text-white shadow-sm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success mt-3">Add Student</button>
+        <a href="{% url 'student_list' %}" class="btn btn-secondary mt-3">Back</a>
+    </form>
+</div>
+{% endblock %}
+</body>
+</html>
