@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="homepage">
+    <div class="hero-card">
+        <h1>🎓 Welcome to UAP Student Service Portal</h1>
+        <p>A simple student portal for routines, marks, and feedback — made with ❤️ for UAP.</p>
+
+        {% if user.is_authenticated %}
+        <div class="row mt-4 justify-content-center g-3">
+            <div class="col-md-3">
+                <a href="{% url 'routine_list' %}" class="btn btn-glow w-100">View Routine</a>
+            </div>
+            <div class="col-md-3">
+                <a href="/marks/" class="btn btn-glow w-100">Marks</a>
+            </div>
+            <div class="col-md-3">
+                <a href="/feedback/" class="btn btn-glow w-100">Feedback</a>
+            </div>
+        </div>
+        {% else %}
+        <p class="mt-4">
+            Please <a href="{% url 'login' %}" class="btn btn-glow">Login</a> to view routines, marks, and feedback.
+        </p>
+        {% endif %}
+        <div class="mt-4">
+            <p>University of Asia Pacific — Student service portal. For presentation/demo use only.</p>
+            <p>Designed by <strong>Your Name / Team</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
