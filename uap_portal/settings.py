@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     # Your apps
     'routine_app',
     'marks_app',
-    # 'feedback_app',
+    'feedback_app',
     'department_app',
     'student_app',
     'faculty_app',
