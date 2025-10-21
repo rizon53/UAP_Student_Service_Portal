@@ -10,7 +10,7 @@
 {% block content %}
 <div class="homepage">
     <div class="hero-card">
-        <h1>🎓 Welcome to UAP Student Service Portal</h1>
+        <h1>🎓 Welcome {{ user.username }} to UAP Student Service Portal </h1>
         <p>A simple student portal for routines, marks, and feedback — made with ❤️ for UAP.</p>
 
         {% if user.is_authenticated %}
@@ -31,8 +31,8 @@
         </p>
         {% endif %}
         <div class="mt-4">
-            <p>University of Asia Pacific — Student service portal. For presentation/demo use only.</p>
-            <p>Designed by <strong>Your Name / Team</strong></p>
+            <p>University of Asia Pacific — Student service portal....</p>
+            <p>Designed by <strong>Cloud9</strong></p>
         </div>
     </div>
 </div>
