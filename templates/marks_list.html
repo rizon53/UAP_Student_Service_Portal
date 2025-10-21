@@ -7,36 +7,124 @@
 <body>
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="mb-3">Your Marks</h2>
-<a href="/marks/add/" class="btn btn-success mb-3">Add Marks</a>
-<table class="table table-striped table-bordered">
-    <thead class="table-primary">
-        <tr>
-            <th>Subject</th>
-            <th>CT1</th>
-            <th>CT2</th>
-            <th>CT3</th>
-            <th>Mid</th>
-            <th>Final</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for m in marks %}
-            <tr>
-                <td>{{ m.subject }}</td>
-                <td>{{ m.ct1 }}</td>
-                <td>{{ m.ct2 }}</td>
-                <td>{{ m.ct3 }}</td>
-                <td>{{ m.mid }}</td>
-                <td>{{ m.final }}</td>
-            </tr>
-        {% empty %}
-            <tr>
-                <td colspan="6" class="text-center">No marks yet.</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<style>
+    .marks-container {
+        background: rgba(15, 15, 30, 0.92);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0,198,255,0.3);
+        backdrop-filter: blur(10px);
+        margin-top: 50px;
+        color: #fff;
+    }
+
+    h2 {
+        text-align: center;
+        color: #00c6ff;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(0,198,255,0.8);
+        margin-bottom: 25px;
+    }
+
+    .btn-glow {
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 12px;
+        box-shadow: 0 0 8px #00c6ff, 0 0 20px #0072ff;
+        transition: all 0.3s ease;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .btn-glow:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px #00c6ff, 0 0 40px #0072ff;
+    }
+
+    table {
+        background: rgba(20, 20, 40, 0.95);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0,198,255,0.3);
+    }
+
+    thead {
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+        transition: all 0.3s ease;
+    }
+
+    tbody tr:hover {
+        background-color: rgba(0, 198, 255, 0.15);
+        transform: scale(1.01);
+    }
+
+    td, th {
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+    }
+
+    .empty-row {
+        color: rgba(255,255,255,0.7);
+        text-align: center;
+    }
+
+    @keyframes glowPulse {
+        0% { box-shadow: 0 0 15px #00c6ff; }
+        50% { box-shadow: 0 0 30px #0072ff; }
+        100% { box-shadow: 0 0 15px #00c6ff; }
+    }
+
+    .marks-container:hover {
+        animation: glowPulse 2s infinite alternate;
+    }
+</style>
+
+<div class="container marks-container">
+    <h2>📊 Your Marks</h2>
+    <div class="text-center">
+        <a href="/marks/add/" class="btn btn-glow">➕ Add Marks</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered align-middle">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>CT1</th>
+                    <th>CT2</th>
+                    <th>CT3</th>
+                    <th>Mid</th>
+                    <th>Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in marks %}
+                    <tr>
+                        <td>{{ m.subject }}</td>
+                        <td>{{ m.ct1 }}</td>
+                        <td>{{ m.ct2 }}</td>
+                        <td>{{ m.ct3 }}</td>
+                        <td>{{ m.mid }}</td>
+                        <td>{{ m.final }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty-row">No marks yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
 </body>
 </html>
