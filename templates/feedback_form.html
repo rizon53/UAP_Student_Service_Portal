@@ -7,13 +7,107 @@
 <body>
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="mb-3">Anonymous Feedback</h2>
-<form method="post" class="border p-4 bg-light rounded shadow-sm">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <a href="/" class="btn btn-secondary">Back</a>
-</form>
+<style>
+    .feedback-container {
+        background: rgba(15, 15, 30, 0.92);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0,198,255,0.3);
+        backdrop-filter: blur(10px);
+        margin: 50px auto;
+        max-width: 650px;
+        color: #fff;
+    }
+
+    h2 {
+        text-align: center;
+        color: #00c6ff;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(0,198,255,0.8);
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-weight: 600;
+        color: #00c6ff;
+        margin-bottom: 8px;
+    }
+
+    textarea, input, select {
+        background: rgba(20, 20, 40, 0.95);
+        color: #fff;
+        border: 1px solid rgba(0,198,255,0.4);
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+
+    textarea:focus, input:focus, select:focus {
+        box-shadow: 0 0 10px rgba(0,198,255,0.6);
+        border-color: #00c6ff;
+        outline: none;
+    }
+
+    .btn-glow {
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 0 8px #00c6ff, 0 0 20px #0072ff;
+        transition: all 0.3s ease;
+        width: 48%;
+    }
+
+    .btn-glow:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px #00c6ff, 0 0 40px #0072ff;
+    }
+
+    .btn-secondary {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+        font-weight: 600;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+        width: 48%;
+    }
+
+    .btn-secondary:hover {
+        background: rgba(255,255,255,0.2);
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+
+    @keyframes glowPulse {
+        0% { box-shadow: 0 0 15px #00c6ff; }
+        50% { box-shadow: 0 0 30px #0072ff; }
+        100% { box-shadow: 0 0 15px #00c6ff; }
+    }
+
+    .feedback-container:hover {
+        animation: glowPulse 2s infinite alternate;
+    }
+</style>
+
+<div class="feedback-container">
+    <h2>💭 Anonymous Feedback</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="button-group">
+            <button type="submit" class="btn btn-glow">Submit</button>
+            <a href="/" class="btn btn-secondary">Back</a>
+        </div>
+    </form>
+</div>
 {% endblock %}
 </body>
 </html>
