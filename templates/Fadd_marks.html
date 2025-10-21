@@ -5,29 +5,69 @@
     <title>Title</title>
 </head>
 <body>
-<form method="POST">
-    {% csrf_token %}
-    <h3>Add Marks for {{ student.user.username }}</h3>
+{% extends 'base.html' %}
+{% block content %}
 
-    <label>Subject:</label>
-    <input type="text" name="subject" required><br>
+<div class="login-page">
+    <div class="login-card text-center">
+        <h2 class="mb-4">📝 Add Marks for <span class="text-info">{{ student.user.username }}</span></h2>
 
-    <label>CT 1:</label>
-    <input type="number" name="ct1" step="0.01"><br>
+        <!-- Flash messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-    <label>CT 2:</label>
-    <input type="number" name="ct2" step="0.01"><br>
+        <form method="POST" class="text-start">
+            {% csrf_token %}
 
-    <label>CT 3:</label>
-    <input type="number" name="ct3" step="0.01"><br>
+            <div class="mb-3">
+                <label class="form-label text-light">Subject</label>
+                <input type="text" class="form-control bg-dark text-light border-secondary" name="subject" placeholder="Enter subject name" required>
+            </div>
 
-    <label>Mid:</label>
-    <input type="number" name="mid" step="0.01"><br>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label text-light">CT 1</label>
+                    <input type="number" step="0.01" class="form-control bg-dark text-light border-secondary" name="ct1" placeholder="e.g. 8.5">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label text-light">CT 2</label>
+                    <input type="number" step="0.01" class="form-control bg-dark text-light border-secondary" name="ct2" placeholder="e.g. 9.0">
+                </div>
+            </div>
 
-    <label>Final:</label>
-    <input type="number" name="final" step="0.01"><br>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label text-light">CT 3</label>
+                    <input type="number" step="0.01" class="form-control bg-dark text-light border-secondary" name="ct3" placeholder="e.g. 10">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label text-light">Mid</label>
+                    <input type="number" step="0.01" class="form-control bg-dark text-light border-secondary" name="mid" placeholder="e.g. 18.5">
+                </div>
+            </div>
 
-    <button type="submit">Save Marks</button>
-</form>
+            <div class="mb-3">
+                <label class="form-label text-light">Final</label>
+                <input type="number" step="0.01" class="form-control bg-dark text-light border-secondary" name="final" placeholder="e.g. 45">
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-glow w-100 py-2">💾 Save Marks</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'faculty_dashboard' %}" class="text-info text-decoration-none">⬅ Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
 </body>
 </html>
