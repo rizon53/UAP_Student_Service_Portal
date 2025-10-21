@@ -5,24 +5,62 @@
     <title>Title</title>
 </head>
 <body>
-<form method="POST">
-    {% csrf_token %}
-    <label>Username:</label>
-    <input type="text" name="username" required><br>
+{% extends 'base.html' %}
+{% block content %}
 
-    <label>Email:</label>
-    <input type="email" name="email" required><br>
+<div class="login-page">
+    <div class="login-card text-center">
+        <h2 class="mb-4">🎓 Student Registration</h2>
 
-    <label>Password:</label>
-    <input type="password" name="password" required><br>
+        <!-- Success / Error Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-    <label>Department:</label>
-    <input type="text" name="department"><br>
+        <form method="POST" class="text-start">
+            {% csrf_token %}
 
-    <label>Year:</label>
-    <input type="text" name="year"><br>
+            <div class="mb-3">
+                <label class="form-label text-light">Username</label>
+                <input type="text" class="form-control bg-dark text-light border-secondary" name="username" placeholder="Enter username" required>
+            </div>
 
-    <button type="submit">Register</button>
-</form>
+            <div class="mb-3">
+                <label class="form-label text-light">Email</label>
+                <input type="email" class="form-control bg-dark text-light border-secondary" name="email" placeholder="Enter email" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-light">Password</label>
+                <input type="password" class="form-control bg-dark text-light border-secondary" name="password" placeholder="Enter password" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-light">Department</label>
+                <input type="text" class="form-control bg-dark text-light border-secondary" name="department" placeholder="e.g. CSE, EEE">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-light">Year</label>
+                <input type="text" class="form-control bg-dark text-light border-secondary" name="year" placeholder="e.g. 2nd Year">
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-glow w-100 py-2">Register</button>
+            </div>
+
+            <p class="text-muted mt-3 text-center">
+                Already have an account? <a href="{% url 'login' %}" class="text-info">Login here</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
 </body>
 </html>
